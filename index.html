@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Saya</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Custom gradient background */
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Fade-in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Progress bar animation */
+        .progress-bar {
+            width: 0%;
+            transition: width 2s ease-in-out;
+        }
+        .progress-bar.animate {
+            width: var(--progress);
+        }
+    </style>
+</head>
+<body class="text-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-black bg-opacity-50 backdrop-blur-md z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Portfolio</h1>
+            <div class="hidden md:flex space-x-6">
+                <a href="#hero" class="hover:text-gray-300">Home</a>
+                <a href="#about" class="hover:text-gray-300">About</a>
+                <a href="#projects" class="hover:text-gray-300">Projects</a>
+                <a href="#skills" class="hover:text-gray-300">Skills</a>
+                <a href="#contact" class="hover:text-gray-300">Contact</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-75 px-4 py-4">
+            <a href="#hero" class="block py-2 hover:text-gray-300">Home</a>
+            <a href="#about" class="block py-2 hover:text-gray-300">About</a>
+            <a href="#projects" class="block py-2 hover:text-gray-300">Projects</a>
+            <a href="#skills" class="block py-2 hover:text-gray-300">Skills</a>
+            <a href="#contact" class="block py-2 hover:text-gray-300">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center justify-center text-center px-4">
+        <div class="fade-in">
+            <h1 class="text-5xl md:text-7xl font-bold mb-4">Halo, Saya [Nama Anda]</h1>
+            <p class="text-xl md:text-2xl mb-8">Web Developer & Designer</p>
+            <div class="space-x-4">
+                <a href="#projects" class="bg-white text-black px-6 py-3 rounded-full hover:bg-gray-200 transition">Lihat Proyek</a>
+                <a href="#contact" class="border border-white px-6 py-3 rounded-full hover:bg-white hover:text-black transition">Hubungi Saya</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4">
+        <div class="container mx-auto text-center fade-in">
+            <h2 class="text-4xl font-bold mb-8">Tentang Saya</h2>
+            <p class="text-lg max-w-2xl mx-auto">Saya adalah seorang web developer yang passionate dengan teknologi. Saya suka membuat website yang cantik dan fungsional. Dengan pengalaman di HTML, CSS, JavaScript, dan framework modern, saya siap membantu proyek Anda.</p>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-4">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 fade-in">Proyek Saya</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white bg-opacity-10 p-6 rounded-lg hover:bg-opacity-20 transition relative overflow-hidden fade-in">
+                    <img src="https://via.placeholder.com/300" alt="Project 1" class="w-full h-48 object-cover rounded">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition flex items-center justify-center">
+                        <h3 class="text-xl font-bold">Project 1</h3>
+                    </div>
+                </div>
+                <div class="bg-white bg-opacity-10 p-6 rounded-lg hover:bg-opacity-20 transition relative overflow-hidden fade-in">
+                    <img src="https://via.placeholder.com/300" alt="Project 2" class="w-full h-48 object-cover rounded">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition flex items-center justify-center">
+                        <h3 class="text-xl font-bold">Project 2</h3>
+                    </div>
+                </div>
+                <div class="bg-white bg-opacity-10 p-6 rounded-lg hover:bg-opacity-20 transition relative overflow-hidden fade-in">
+                    <img src="https://via.placeholder.com/300" alt="Project 3" class="w-full h-48 object-cover rounded">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition flex items-center justify-center">
+                        <h3 class="text-xl font-bold">Project 3</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-4">
+        <div class="container mx-auto text-center fade-in">
+            <h2 class="text-4xl font-bold mb-12">Keahlian Saya</h2>
+            <div class="space-y-6 max-w-md mx-auto">
+                <div>
+                    <p class="text-left mb-2">HTML/CSS: 90%</p>
+                    <div class="bg-gray-700 rounded-full h-4">
+                        <div class="progress-bar bg-blue-500 h-4 rounded-full" style="--progress: 90%"></div>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-left mb-2">JavaScript: 80%</p>
+                    <div class="bg-gray-700 rounded-full h-4">
+                        <div class="progress-bar bg-green-500 h-4 rounded-full" style="--progress: 80%"></div>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-left mb-2">React: 70%</p>
+                    <div class="bg-gray-700 rounded-full h-4">
+                        <div class="progress-bar bg-purple-500 h-4 rounded-full" style="--progress: 70%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4">
+        <div class="container mx-auto text-center fade-in">
+            <h2 class="text-4xl font-bold mb-12">Hubungi Saya</h2>
+            <form class="max-w-md mx-auto space-y-4">
+                <input type="text" placeholder="Nama" class="w-full p-3 rounded bg-white bg-opacity-10 text-white placeholder-gray-300">
+                <input type="email" placeholder="Email" class="w-full p-3 rounded bg-white bg-opacity-10 text-white placeholder-gray-300">
+                <textarea placeholder="Pesan" class="w-full p-3 rounded bg-white bg-opacity-10 text-white placeholder-gray-300 h-32"></textarea>
+                <button type="submit" class="bg-white text-black px-6 py-3 rounded-full hover:bg-gray-200 transition">Kirim</button>
+            </form>
+            <div class="mt-8 space-x-4">
+                <a href="#" class="text-2xl hover:text-gray-300"><i class="fab fa-github"></i></a>
+                <a href="#" class="text-2xl hover:text-gray-300"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-2xl hover:text-gray-300"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript untuk Animasi -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Fade-in on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Animate progress bars on scroll
+        const skillsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.progress-bar').forEach(bar => bar.classList.add('animate'));
+                }
+            });
+        });
+        skillsObserver.observe(document.getElementById('skills'));
+    </script>
+</body>
+</html>
