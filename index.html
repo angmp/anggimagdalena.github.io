@@ -1,243 +1,231 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Saya</title>
-    <!-- Tailwind CSS via CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome untuk ikon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        /* Custom background - coklat susu */
-        body {
-            background: linear-gradient(135deg, #F5F5DC 0%, #D2B48C 100%);
-            min-height: 100vh;
-        }
-        /* Smooth scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-        /* Fade-in animation - halus dan calm */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        /* Progress bar animation - data-driven */
-        .progress-bar {
-            width: 0%;
-            transition: width 2s ease-in-out;
-        }
-        .progress-bar.animate {
-            width: var(--progress);
-        }
-        /* Card hover animation - warm dan interaktif */
-        .card {
-            transition: transform 0.5s ease, box-shadow 0.5s ease;
-        }
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.3);
-        }
-        /* Button glowing effect - subtle dan warm */
-        .btn-glow {
-            transition: box-shadow 0.3s ease;
-        }
-        .btn-glow:hover {
-            box-shadow: 0 0 20px rgba(139, 69, 19, 0.5);
-        }
-        /* Floating animation for icons - calm dan data-driven */
-        .float {
-            animation: float 3s ease-in-out infinite;
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        /* Parallax effect for background - subtle warmth */
-        .parallax {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio Saya</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome untuk ikon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <!-- Quill (untuk tampilan editor mirip Tiptap) -->
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" />
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #f5f5dc 0%, #d2b48c 100%);
+      min-height: 100vh;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .card {
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 30px rgba(139, 69, 19, 0.3);
+    }
+    .float {
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    .parallax {
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  </style>
 </head>
 <body class="text-gray-800">
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-white bg-opacity-80 backdrop-blur-md z-50 shadow-md">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-gray-800">Portfolio</h1>
-            <div class="hidden md:flex space-x-6">
-                <a href="#hero" class="text-gray-800 hover:text-amber-600 transition">Home</a>
-                <a href="#about" class="text-gray-800 hover:text-amber-600 transition">About</a>
-                <a href="#projects" class="text-gray-800 hover:text-amber-600 transition">Projects</a>
-                <a href="#skills" class="text-gray-800 hover:text-amber-600 transition">Skills</a>
-                <a href="#contact" class="text-gray-800 hover:text-amber-600 transition">Contact</a>
-            </div>
-            <!-- Mobile Menu Button -->
-            <button id="menu-btn" class="md:hidden text-2xl text-gray-800">
-                <i class="fas fa-bars"></i>
-            </button>
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full bg-white bg-opacity-80 backdrop-blur-md z-50 shadow-md">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-gray-800">Portfolio</h1>
+      <div class="hidden md:flex space-x-6">
+        <a href="#hero" class="hover:text-amber-600">Home</a>
+        <a href="#about" class="hover:text-amber-600">About</a>
+        <a href="#projects" class="hover:text-amber-600">Projects</a>
+        <a href="#skills" class="hover:text-amber-600">Skills</a>
+        <a href="#certificates" class="hover:text-amber-600">Certificates</a>
+        <a href="#contact" class="hover:text-amber-600">Contact</a>
+      </div>
+      <button id="menu-btn" class="md:hidden text-2xl text-gray-800">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-white bg-opacity-90 px-4 py-4 shadow-md">
+      <a href="#hero" class="block py-2 hover:text-amber-600">Home</a>
+      <a href="#about" class="block py-2 hover:text-amber-600">About</a>
+      <a href="#projects" class="block py-2 hover:text-amber-600">Projects</a>
+      <a href="#skills" class="block py-2 hover:text-amber-600">Skills</a>
+      <a href="#certificates" class="block py-2 hover:text-amber-600">Certificates</a>
+      <a href="#contact" class="block py-2 hover:text-amber-600">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero" class="min-h-screen flex flex-col items-center justify-center text-center px-4 pt-24 parallax" style="background-image: linear-gradient(135deg, rgba(245,245,220,0.8), rgba(210,180,140,0.8));">
+    <div class="fade-in">
+      <img src="profilePhoto.jpg" alt="Foto Anggi" class="w-40 h-40 rounded-full border-4 border-amber-600 shadow-lg mx-auto mb-6 object-cover float" />
+      <h1 class="text-5xl md:text-7xl font-bold mb-4 text-gray-800">Hi, I'm Anggi Magdalena Panjaitan</h1>
+      <h2 class="text-2xl md:text-3xl font-medium mb-4 text-gray-700">Information System Student at UMN</h2>
+      <div class="space-x-4">
+        <a href="#projects" class="bg-amber-600 text-white px-6 py-3 rounded-full hover:bg-amber-700">Lihat Proyek</a>
+        <a href="#contact" class="border border-amber-600 px-6 py-3 rounded-full hover:bg-amber-600 hover:text-white">Hubungi Saya</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-20 px-4">
+    <div class="container mx-auto fade-in">
+      <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Tentang Saya</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-amber-100 p-6 rounded-lg card">
+          <h3 class="text-2xl font-semibold mb-4">Tentang Saya</h3>
+          <p>Saya adalah seorang web developer yang suka membuat website cantik dan interaktif menggunakan teknologi modern.</p>
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white bg-opacity-90 px-4 py-4 shadow-md">
-            <a href="#hero" class="block py-2 text-gray-800 hover:text-amber-600 transition">Home</a>
-            <a href="#about" class="block py-2 text-gray-800 hover:text-amber-600 transition">About</a>
-            <a href="#projects" class="block py-2 text-gray-800 hover:text-amber-600 transition">Projects</a>
-            <a href="#skills" class="block py-2 text-gray-800 hover:text-amber-600 transition">Skills</a>
-            <a href="#contact" class="block py-2 text-gray-800 hover:text-amber-600 transition">Contact</a>
+        <div class="bg-amber-100 p-6 rounded-lg card">
+          <h3 class="text-2xl font-semibold mb-4">Education</h3>
+          <ul class="space-y-2">
+            <li><strong>Universitas Multimedia Nusantara (UMN)</strong> - Sistem Informasi</li>
+            <li>Lokasi: Indonesia</li>
+            <li>Status: Mahasiswa Aktif</li>
+          </ul>
         </div>
-    </nav>
+      </div>
+    </div>
+  </section>
 
-    <!-- Hero Section -->
-    <section id="hero" class="min-h-screen flex flex-col items-center justify-center text-center px-4 pt-24 parallax" style="background-image: linear-gradient(135deg, rgba(245,245,220,0.8) 0%, rgba(210,180,140,0.8) 100%);">
-        <div class="fade-in">
-            <!-- Foto Profil di Tengah -->
-            <img src="angmp/anggimagdalena.github.io/profilePhoto.jpg" alt="Foto Anggi Magdalena Panjaitan" 
-                class="w-40 h-40 rounded-full border-4 border-amber-600 shadow-lg mx-auto mb-6 object-cover float">
-
-            <!-- Teks Utama -->
-            <h1 class="text-5xl md:text-7xl font-bold mb-4 text-gray-800">Hi, I'm Anggi Magdalena Panjaitan</h1>
-            <h9 class="text-2xl md:text-3xl font-medium mb-4 text-gray-700">Information System Student at Universitas Multimedia Nusantara - Indonesia</h9>
-            <p class="text-xl md:text-2xl mb-8 text-gray-700">Data Scientist</p>
-
-            <!-- Tombol -->
-            <div class="space-x-4">
-                <a href="#projects" class="bg-amber-600 text-white px-6 py-3 rounded-full btn-glow hover:bg-amber-700 transition">Lihat Proyek</a>
-                <a href="#contact" class="border border-amber-600 px-6 py-3 rounded-full btn-glow hover:bg-amber-600 hover:text-white transition">Hubungi Saya</a>
-            </div>
+  <!-- Projects -->
+  <section id="projects" class="py-20 px-4">
+    <div class="container mx-auto fade-in">
+      <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Proyek Saya</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-amber-100 p-6 rounded-lg card overflow-hidden">
+          <img src="https://via.placeholder.com/300" class="rounded mb-4" alt="Project 1" />
+          <h3 class="text-xl font-semibold">Image Classification</h3>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-20 px-4">
-        <div class="container mx-auto fade-in">
-            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Tentang Saya</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Kiri: Tentang Saya -->
-                <div class="bg-amber-100 p-6 rounded-lg card">
-                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">Tentang Saya</h3>
-                    <p class="text-lg text-gray-700">Saya adalah seorang web developer yang passionate dengan teknologi. Saya suka membuat website yang cantik dan fungsional. Dengan pengalaman di HTML, CSS, JavaScript, dan framework modern, saya siap membantu proyek Anda.</p>
-                </div>
-                <!-- Kanan: Education -->
-                <div class="bg-amber-100 p-6 rounded-lg card">
-                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">Education</h3>
-                    <ul class="text-lg text-gray-700 space-y-2">
-                        <li><strong>Universitas Multimedia Nusantara (UMN)</strong> - Sistem Informasi (Information System)</li>
-                        <li>Lokasi: Indonesia</li>
-                        <li>Status: Mahasiswa Aktif</li>
-                        <li>Fokus: Data Science, Web Development, dan Teknologi Informasi</li>
-                    </ul>
-                </div>
-            </div>
+        <div class="bg-amber-100 p-6 rounded-lg card overflow-hidden">
+          <img src="https://via.placeholder.com/300" class="rounded mb-4" alt="Project 2" />
+          <h3 class="text-xl font-semibold">Web CRUD Retail</h3>
         </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 px-4">
-        <div class="container mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-12 fade-in text-gray-800">Proyek Saya</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project Image Classification (Datmod) --> 
-                <div class="bg-amber-100 p-6 rounded-lg card relative overflow-hidden">
-                    <img src="https://via.placeholder.com/300" alt="Image Classification" class="w-full h-48 object-cover rounded">
-                    <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition flex items-center justify-center">
-                        <h3 class="text-xl font-bold text-white">Project 1</h3>
-                    </div>
-                </div>
-                <div class="bg-amber-100 p-6 rounded-lg card relative overflow-hidden">
-                    <img src="https://via.placeholder.com/300" alt="Project 2" class="w-full h-48 object-cover rounded">
-                    <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition flex items-center justify-center">
-                        <h3 class="text-xl font-bold text-white">Project 2</h3>
-                    </div>
-                </div>
-                <div class="bg-amber-100 p-6 rounded-lg card relative overflow-hidden">
-                    <img src="https://via.placeholder.com/300" alt="Project 3" class="w-full h-48 object-cover rounded">
-                    <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition flex items-center justify-center">
-                        <h3 class="text-xl font-bold text-white">Project 3</h3>
-                    </div>
-                </div>
-            </div>
+        <div class="bg-amber-100 p-6 rounded-lg card overflow-hidden">
+          <img src="https://via.placeholder.com/300" class="rounded mb-4" alt="Project 3" />
+          <h3 class="text-xl font-semibold">JavaJam Website</h3>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 px-4">
-        <div class="container mx-auto text-center fade-in">
-            <h2 class="text-4xl font-bold mb-12 text-gray-800">Keahlian Saya</h2>
-            <div class="space-y-6 max-w-md mx-auto">
-                <div>
-                    <p class="text-left mb-2 text-gray-700">Python: 90%</p>
-                    <div class="bg-amber-200 rounded-full h-4">
-                        <div class="progress-bar bg-amber-600 h-4 rounded-full" style="--progress: 90%"></div>
-                    </div>
-                </div>
-                <div>
-                    <p class="text-left mb-2 text-gray-700">SQL: 80%</p>
-                    <div class="bg-amber-200 rounded-full h-4">
-                        <div class="progress-bar bg-amber-600 h-4 rounded-full" style="--progress: 80%"></div>
-                    </div>
-                </div>
-                <div>
-                    <p class="text-left mb-2 text-gray-700">HTML/CSS: 70%</p>
-                    <div class="bg-amber-200 rounded-full h-4">
-                        <div class="progress-bar bg-amber-600 h-4 rounded-full" style="--progress: 70%"></div>
-                    </div>
-                </div>
-            </div>
+  <!-- Skills -->
+  <section id="skills" class="py-20 px-4">
+    <div class="container mx-auto text-center fade-in">
+      <h2 class="text-4xl font-bold mb-12 text-gray-800">Keahlian Saya</h2>
+      <div class="space-y-6 max-w-md mx-auto">
+        <div>
+          <p class="text-left mb-2 text-gray-700">Python: 90%</p>
+          <div class="bg-amber-200 rounded-full h-4">
+            <div class="bg-amber-600 h-4 rounded-full" style="width:90%"></div>
+          </div>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 px-4">
-        <div class="container mx-auto text-center fade-in">
-            <h2 class="text-4xl font-bold mb-12 text-gray-800">Hubungi Saya</h2>
-            <form class="max-w-md mx-auto space-y-4">
-                <input type="text" placeholder="Nama" class="w-full p-3 rounded bg-amber-100 text-gray-800 placeholder-gray-500 border border-amber-300">
-                <input type="email" placeholder="Email" class="w-full p-3 rounded bg-amber-100 text-gray-800 placeholder-gray-500 border border-amber-300">
-                <textarea placeholder="Pesan" class="w-full p-3 rounded bg-amber-100 text-gray-800 placeholder-gray-500 h-32 border border-amber-300"></textarea>
-                <button type="submit" class="bg-amber-600 text-white px-6 py-3 rounded-full btn-glow hover:bg-amber-700 transition">Kirim</button>
-            </form>
-            <div class="mt-8 space-x-4">
-                <a href="#" class="text-2xl text-gray-800 hover:text-amber-600 float"><i class="fab fa-github"></i></a>
-                <a href="#" class="text-2xl text-gray-800 hover:text-amber-600 float"><i class="fab fa-linkedin"></i></a>
-                <a href="#" class="text-2xl text-gray-800 hover:text-amber-600 float"><i class="fab fa-twitter"></i></a>
-            </div>
+        <div>
+          <p class="text-left mb-2 text-gray-700">SQL: 80%</p>
+          <div class="bg-amber-200 rounded-full h-4">
+            <div class="bg-amber-600 h-4 rounded-full" style="width:80%"></div>
+          </div>
         </div>
-    </section>
+        <div>
+          <p class="text-left mb-2 text-gray-700">HTML/CSS: 70%</p>
+          <div class="bg-amber-200 rounded-full h-4">
+            <div class="bg-amber-600 h-4 rounded-full" style="width:70%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- JavaScript untuk Animasi -->
-    <script>
-        // Mobile menu toggle
-        document.getElementById('menu-btn').addEventListener('click', () => {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
+  <!-- Certificates -->
+  <section id="certificates" class="py-20 px-4 bg-amber-50">
+    <div class="container mx-auto text-center fade-in">
+      <h2 class="text-4xl font-bold mb-12 text-gray-800">Certificates</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-amber-100 p-6 rounded-lg card">
+          <img src="https://via.placeholder.com/300x200" alt="Certificate 1" class="rounded mb-4" />
+          <h3 class="text-xl font-semibold mb-2">Google Data Analytics</h3>
+          <p class="text-gray-700">Coursera</p>
+        </div>
+        <div class="bg-amber-100 p-6 rounded-lg card">
+          <img src="https://via.placeholder.com/300x200" alt="Certificate 2" class="rounded mb-4" />
+          <h3 class="text-xl font-semibold mb-2">Python for Data Science</h3>
+          <p class="text-gray-700">IBM</p>
+        </div>
+        <div class="bg-amber-100 p-6 rounded-lg card">
+          <img src="https://via.placeholder.com/300x200" alt="Certificate 3" class="rounded mb-4" />
+          <h3 class="text-xl font-semibold mb-2">Machine Learning</h3>
+          <p class="text-gray-700">Stanford University</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // Fade-in on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        });
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  <!-- Rich Text Editor ala Tiptap -->
+  <section id="editor" class="py-20 px-4">
+    <div class="container mx-auto text-center fade-in">
+      <h2 class="text-4xl font-bold mb-12 text-gray-800">My Notes (Tiptap Style)</h2>
+      <div id="editor-container" class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md"></div>
+    </div>
+  </section>
 
-        // Animate progress bars on scroll
-        const skillsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.querySelectorAll('.progress-bar').forEach(bar => bar.classList.add('animate'));
-                }
-            });
-        });
-        skillsObserver.observe(document.getElementById('skills'));
-    </script>
+  <!-- Contact -->
+  <section id="contact" class="py-20 px-4">
+    <div class="container mx-auto text-center fade-in">
+      <h2 class="text-4xl font-bold mb-12 text-gray-800">Hubungi Saya</h2>
+      <form class="max-w-md mx-auto space-y-4">
+        <input type="text" placeholder="Nama" class="w-full p-3 rounded bg-amber-100 border border-amber-300" />
+        <input type="email" placeholder="Email" class="w-full p-3 rounded bg-amber-100 border border-amber-300" />
+        <textarea placeholder="Pesan" class="w-full p-3 rounded bg-amber-100 border border-amber-300 h-32"></textarea>
+        <button type="submit" class="bg-amber-600 text-white px-6 py-3 rounded-full hover:bg-amber-700">Kirim</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- JS -->
+  <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+  <script>
+    // Mobile menu toggle
+    document.getElementById('menu-btn').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    // Fade-in scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    });
+    document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+
+    // Quill editor
+    const quill = new Quill('#editor-container', {
+      theme: 'snow',
+      placeholder: 'Tulis sesuatu di sini...',
+    });
+  </script>
 </body>
 </html>
+
